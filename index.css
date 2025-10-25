@@ -1,0 +1,547 @@
+/* Reset and Base Styles */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  height: 100%;
+  width: 100%;
+  font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  color: #333;
+  overflow-x: hidden;
+}
+
+/* Background Layout */
+.background-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -2;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* Remove left-to-right blur panel */
+.blurred-bg { display: none; }
+.blurred-bg::after { display: none; }
+
+.main-bg {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+/* Top mask: keeps the header area clean and fades into the slideshow */
+.top-mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: clamp(110px, 22vh, 200px);
+  background: linear-gradient(
+    to bottom,
+    rgba(248, 250, 252, 1) 0%,
+    rgba(248, 250, 252, 0.9) 45%,
+    rgba(248, 250, 252, 0) 100%
+  );
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* Slideshow */
+.slideshow {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.slideshow img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+
+.slideshow img.active {
+  opacity: 0.75; /* Reduced from 1 to increase translucency */
+}
+
+.slideshow img.fit {
+  object-fit: contain;
+}
+
+/* Content Layout */
+.content {
+  position: relative;
+  min-height: 100vh;
+  padding: 1rem 2rem 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  z-index: 1;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-bottom: 180px; /* Space for the buttons */
+}
+
+/* Header Styles */
+.header {
+  margin-top: 0.25rem;
+  text-align: center;
+  max-width: 100%;
+  padding-left: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  align-self: center;
+}
+
+.title {
+  font-size: 3.5rem;
+  font-weight: 800;
+  color: #1a365d;
+  line-height: 1.1;
+  margin-bottom: 0.5rem;
+  letter-spacing: -0.05em;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.subtitle {
+  font-size: 1.25rem;
+  font-weight: 400;
+  color: #4a5568;
+  margin-top: 0;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.header + .services-container,
+.header + .cta-container {
+  margin-top: 1rem;
+}
+/* Enhanced Interactive Boxes */
+.interactive-boxes {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 100%;
+  max-width: 320px;
+  padding: 0 1rem 2rem;
+  box-sizing: border-box;
+  align-items: center;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+}
+
+.interactive-box {
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.12);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 2px solid rgba(26, 54, 93, 0.08);
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  transform: translateY(0);
+  min-height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Enhanced Hover States for Interactive Boxes */
+.interactive-box:hover {
+  transform: translateY(-4px); /* Lift animation */
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.18); /* Enhanced shadow on hover */
+  border-color: rgba(26, 54, 93, 0.15);
+}
+
+.interactive-box:focus-within {
+  outline: 3px solid rgba(26, 54, 93, 0.4);
+  outline-offset: 2px;
+}
+
+/* Enhanced Box Header (for services) */
+.box-header {
+  width: 100%;
+  padding: 1.4rem 1.8rem;
+  background: #1a365d;
+  color: white;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 1.1rem;
+  font-weight: 600;
+  line-height: 1.2;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 16px;
+  letter-spacing: 0.01em;
+  min-height: 70px;
+  box-sizing: border-box;
+}
+
+/* Enhanced Hover State for Box Header */
+.box-header:hover {
+  background: #2c4a7a; /* Lighter blue on hover */
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(26, 54, 93, 0.25);
+}
+
+.box-header:focus {
+  outline: 3px solid rgba(74, 144, 226, 0.6);
+  outline-offset: 2px;
+}
+
+.box-header:active {
+  transform: translateY(0);
+  transition: transform 0.1s;
+}
+
+/* Enhanced Caret Animation */
+.caret {
+  font-size: 1.2rem;
+  font-weight: 700;
+  transform: rotate(180deg); /* Start pointing up */
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  color: rgba(255, 255, 255, 0.9);
+}
+
+/* Caret rotation for expanded state */
+.box-header[aria-expanded="true"] .caret {
+  transform: rotate(0deg);
+}
+
+/* Services box expanded state */
+.services-box.expanded {
+  border-radius: 16px 16px 0 0;
+  overflow: visible;
+  z-index: 10;
+}
+
+.services-box.expanded .box-header {
+  border-radius: 16px 16px 0 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Enhanced Dropdown Content */
+.box-content {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  max-height: 0;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  background: white;
+  border-radius: 0 0 16px 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  z-index: 5;
+  opacity: 0;
+  transform: translateY(-10px);
+  visibility: hidden;
+  margin-top: 0;
+  border: 2px solid rgba(26, 54, 93, 0.08);
+  border-top: none;
+}
+
+.services-box[aria-expanded="true"] .box-content,
+.services-box.expanded .box-content {
+  padding: 1.5rem;
+  max-height: 400px;
+  opacity: 1;
+  transform: translateY(0);
+  visibility: visible;
+  border-color: rgba(26, 54, 93, 0.15);
+}
+
+/* Enhanced Services Grid - Single Column */
+.services-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 0.75rem;
+  max-height: 400px;
+  overflow-y: auto;
+  margin: 0;
+  scrollbar-width: thin;
+  scrollbar-color: #cbd5e0 #f8fafc;
+  animation: fadeIn 0.3s ease-out;
+  background: #ffffff;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  width: 100%;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.services-grid::-webkit-scrollbar {
+  width: 8px;
+}
+
+.services-grid::-webkit-scrollbar-track {
+  background: #f8fafc;
+  border-radius: 4px;
+}
+
+.services-grid::-webkit-scrollbar-thumb {
+  background: #cbd5e0;
+  border-radius: 4px;
+}
+
+.services-grid::-webkit-scrollbar-thumb:hover {
+  background: #a0aec0;
+}
+
+.service:hover::before {
+  opacity: 1;
+}
+
+.service:active {
+  transform: translateY(0) scale(0.99);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  transition: transform 0.1s ease, box-shadow 0.1s ease;
+}
+
+/* Focus state for keyboard navigation */
+.service:focus {
+  outline: 3px solid rgba(26, 54, 93, 0.2);
+  outline-offset: 2px;
+  z-index: 1;
+  position: relative;
+}
+
+/* Enhanced CTA Boxes */
+.cta-box {
+  text-decoration: none;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #1a365d;
+  border-radius: 16px;
+  box-shadow: 0 6px 25px rgba(26, 54, 93, 0.15);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 2px solid rgba(26, 54, 93, 0.1);
+  min-height: 70px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  text-align: center;
+  padding: 1.4rem 1.8rem;
+  letter-spacing: 0.01em;
+  position: relative;
+  overflow: hidden;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+/* Different colors for different CTA types */
+.cta-box.availability {
+  background: linear-gradient(135deg, #38a169 0%, #2f855a 100%);
+  border-color: rgba(56, 161, 105, 0.2);
+}
+
+.cta-box.whatsapp {
+  background: linear-gradient(135deg, #25d366 0%, #20ba5a 100%);
+  border-color: rgba(37, 211, 102, 0.2);
+}
+
+.cta-box .box-content {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  background: transparent;
+  max-height: none;
+  overflow: visible;
+  margin: 0;
+  opacity: 1;
+  transition: none;
+  text-align: center;
+}
+
+/* Enhanced Hover states for CTA boxes */
+.cta-box:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 35px rgba(26, 54, 93, 0.25);
+}
+
+.cta-box.availability:hover {
+  background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
+  box-shadow: 0 12px 35px rgba(56, 161, 105, 0.3);
+}
+
+.cta-box.whatsapp:hover {
+  background: linear-gradient(135deg, #38ef7d 0%, #25d366 100%);
+  box-shadow: 0 12px 35px rgba(37, 211, 102, 0.3);
+}
+
+.cta-box:focus {
+  outline: 3px solid rgba(74, 144, 226, 0.6);
+  outline-offset: 2px;
+}
+
+.cta-box:active {
+  transform: translateY(-1px);
+  transition: transform 0.1s;
+}
+
+/* Subtle animations for initial load */
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.interactive-box {
+  animation: slideInUp 0.6s ease forwards;
+  opacity: 0; /* Start hidden */
+}
+
+.interactive-box:nth-child(1) {
+  animation-delay: 0.1s;
+}
+
+.interactive-box:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.interactive-box:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .content {
+    padding: 1rem 1.5rem 180px 1.5rem; /* Space for the buttons */
+    align-items: center;
+  }
+  
+  .interactive-boxes {
+    margin: 1.5rem 0;
+    width: 100%;
+    max-width: 100%;
+    padding: 0;
+  }
+  
+  .services-grid {
+    padding: 0.75rem;
+    max-height: 60vh;
+    overflow-y: auto;
+  }
+  
+  .service {
+    padding: 1rem;
+    font-size: 0.9rem;
+  }
+  
+  .header,
+  .services-container,
+  .cta-container {
+    max-width: 100%;
+    padding: 0;
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+  }
+
+  .title {
+    font-size: 2rem;
+  }
+
+  .subtitle {
+    font-size: 0.95rem;
+  }
+
+  .top-mask {
+    height: clamp(150px, 30vh, 260px);
+  }
+
+  /* Mobile optimizations */
+  .box-header {
+    padding: 1.2rem 1.5rem;
+    font-size: 1rem;
+  }
+
+  .cta-box {
+    padding: 1.2rem 1.5rem;
+    font-size: 1rem;
+    min-height: 65px;
+  }
+
+  .service {
+    padding: 0.8rem 1rem;
+    font-size: 0.85rem;
+  }
+
+  .services-grid {
+    grid-template-columns: 1fr; /* Single column on mobile */
+    gap: 0.6rem;
+  }
+
+  /* Reduce animations on mobile for performance */
+  .interactive-box:hover {
+    transform: translateY(-2px);
+  }
+
+  .service:hover {
+    transform: translateY(-1px) scale(1.01);
+  }
+
+  .cta-box:hover {
+    transform: translateY(-2px);
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .interactive-box {
+    border-width: 3px;
+  }
+  
+  .service {
+    border-width: 2px;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  
+  .interactive-box:hover,
+  .cta-box:hover,
+  .service:hover {
+    transform: none;
+  }
+}
