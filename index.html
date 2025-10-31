@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Anchor Sonya — Professional Anchor</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
   <style>
     /* CSS Reset and Base Styles */
     * {
@@ -323,6 +324,62 @@
       border-color: rgba(144, 238, 144, 0.5);
     }
 
+    /* Social Buttons Container */
+    .social-buttons {
+      display: flex;
+      gap: 10px;
+      width: 100%;
+    }
+
+    /* Social Button Base Styles */
+    .social-buttons .cta-box {
+      flex: 1;
+      min-width: 0;
+      padding: 0;
+    }
+
+    /* WhatsApp Button */
+    .social-buttons .whatsapp {
+      background: linear-gradient(135deg, #25d366 0%, #20ba5a 100%);
+      border-color: rgba(37, 211, 102, 0.2);
+    }
+
+    .social-buttons .whatsapp:hover {
+      background: linear-gradient(135deg, #38ef7d 0%, #25d366 100%);
+      box-shadow: 0 12px 35px rgba(37, 211, 102, 0.3);
+    }
+
+    /* Instagram Button */
+    .social-buttons .instagram {
+      background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+      border-color: rgba(188, 24, 136, 0.2);
+    }
+
+    .social-buttons .instagram:hover {
+      background: linear-gradient(45deg, #ff8a3d 0%, #ff6b4a 25%, #ff2d5e 50%, #e1306c 75%, #c13584 100%);
+      box-shadow: 0 12px 35px rgba(188, 24, 136, 0.3);
+    }
+
+    /* Icon Styling */
+    .social-buttons .box-content {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      padding: 1.2rem 0.5rem;
+      min-height: 56px;
+    }
+
+    .social-buttons .fab {
+      font-size: 2rem;
+      color: white;
+      transition: transform 0.2s ease;
+    }
+
+    .social-buttons .cta-box:hover .fab {
+      transform: scale(1.1);
+    }
+
 
     /* Subtle Animations */
     @keyframes slideIn {
@@ -465,12 +522,22 @@
         </div>
       </a>
 
-      <!-- WhatsApp Box -->
-      <a href="https://wa.me/917021170163" target="_blank" rel="noopener noreferrer" class="interactive-box cta-box whatsapp" aria-label="Message on WhatsApp">
-        <div class="box-content">
-          <span>Contact on WhatsApp</span>
-        </div>
-      </a>
+      <!-- Social Contact Buttons -->
+      <div class="social-buttons">
+        <!-- WhatsApp Button -->
+        <a href="https://wa.me/917021170163" target="_blank" rel="noopener noreferrer" class="interactive-box cta-box whatsapp" aria-label="Message on WhatsApp">
+          <div class="box-content">
+            <i class="fab fa-whatsapp"></i>
+          </div>
+        </a>
+        
+        <!-- Instagram Button -->
+        <a href="https://www.instagram.com/your_instagram_username/" target="_blank" rel="noopener noreferrer" class="interactive-box cta-box instagram" aria-label="Visit Instagram">
+          <div class="box-content">
+            <i class="fab fa-instagram"></i>
+          </div>
+        </a>
+      </div>
     </div>
   </div>
 
